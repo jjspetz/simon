@@ -1,0 +1,76 @@
+#main{
+  margin: 1em auto;
+  padding: 4em;
+  width: 40%;
+  border-radius: 50%;
+  background-color: black;
+}
+
+#controlPanel {
+  text-align: center;
+  margin: 1em auto;
+  width: 18em;
+  height: 18em;
+  background-color: #CCC;
+  border-radius: 50%;
+}
+
+#red {
+  margin: 0 auto;
+  width: 0;
+	height: 0;
+	border-left: 80px solid transparent;
+	border-right: 80px solid transparent;
+	border-bottom: 120px solid red;
+}
+
+#blue {
+  float: right;
+  margin-top: 6em;
+  width: 0;
+	height: 0;
+	border-top: 80px solid transparent;
+	border-left: 120px solid blue;
+	border-bottom: 80px solid transparent;
+}
+
+#green {
+  float: left;
+  margin-top: 6em;
+ 	width: 0;
+	height: 0;
+	border-top: 80px solid transparent;
+	border-right: 120px solid green;
+	border-bottom: 80px solid transparent;
+}
+
+#yellow {
+  clear: both;
+  margin: 0 auto;
+  width: 0;
+	height: 0;
+	border-left: 80px solid transparent;
+	border-right: 80px solid transparent;
+	border-top: 120px solid yellow;
+}
+
+#count, #start {
+  position: relative;
+  top: 40%;
+}
+
+#count div {
+  display: inline-block;
+  margin-top: 1em;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  font-size: 16pt;
+}
+
+#start button {
+  border: 3px solid darkorange;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px;
+  background: yellow;
+  font-size: 20pt;
+}
