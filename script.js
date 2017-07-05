@@ -4,8 +4,11 @@ window.onload = function() {
   // globals
   var colorArray = [];
   var userArray = [];
-  var count = 0;
   var colors;
+  var colorDict = {
+    darkyellow: '#b38f00',
+    lightred: '...'
+  }
 
   // set variables
   var red = document.getElementById('red');
@@ -42,6 +45,11 @@ window.onload = function() {
   });
   // start
   start.addEventListener('click', function() {
+    // reset globals
+    colorArray = [];
+    userArray = [];
+    count = 0;
+    // run game
     game();
   });
 
@@ -55,17 +63,21 @@ window.onload = function() {
 
   // button effects
   function effects(buttons) {
-    buttons.forEach(function(button) {
-      // gets old color
-      let color = button.style.borderColor;
-      // change later
-      button.style.borderColor = "white";
-      // play audio
-      let track = audio[button.id + 'Audio'];
-      track.play();
-      // change back
-      setTimeout(function() {button.style.borderColor = color}, 5000);
-    });
+
+      buttons.forEach(function(button, index) {
+        setTimeout(() => {
+        // change later
+        button.style.backgroundColor = "white";
+        // play audio
+        let track = audio[button.id + 'Audio'];
+        track.play();
+        let last = buttons[index-1] || undefined;
+        if (last)
+          last.style.backgroundColor = last.id;
+
+      }, 1000 * index);
+      });
+
   }
 
   // check user input
@@ -85,10 +97,10 @@ window.onload = function() {
     colorArray.push(next);
     effects(colorArray);
 
-    if (!check()) {
+    if (check()) {
       effects(colorArray);
     }
-    else if (count < 20) {
+    else if (count < 5) {
       count++;
       game();
     }

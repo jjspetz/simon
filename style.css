@@ -1,7 +1,11 @@
+body {
+  margin: 0;
+  height: 100vh;
+}
 #main{
   margin: 1em auto;
   padding: 4em;
-  width: 40%;
+  width: 550px;
   border-radius: 50%;
   background-color: black;
 }
@@ -17,41 +21,37 @@
 
 #red {
   margin: 0 auto;
-  width: 0;
-	height: 0;
-	border-left: 80px solid transparent;
-	border-right: 80px solid transparent;
-	border-bottom: 120px solid red;
+  width: 80px;
+  height: 80px;
+  background: red;
+	border: 5px solid darkred;
 }
 
 #blue {
   float: right;
   margin-top: 6em;
-  width: 0;
-	height: 0;
-	border-top: 80px solid transparent;
-	border-left: 120px solid blue;
-	border-bottom: 80px solid transparent;
+  width: 80px;
+  height: 80px;
+  background: blue;
+	border: 5px solid darkblue;
 }
 
 #green {
   float: left;
   margin-top: 6em;
- 	width: 0;
-	height: 0;
-	border-top: 80px solid transparent;
-	border-right: 120px solid green;
-	border-bottom: 80px solid transparent;
+  width: 80px;
+  height: 80px;
+  background: green;
+	border: 5px solid darkgreen;
 }
 
 #yellow {
   clear: both;
   margin: 0 auto;
-  width: 0;
-	height: 0;
-	border-left: 80px solid transparent;
-	border-right: 80px solid transparent;
-	border-top: 120px solid yellow;
+  width: 80px;
+  height: 80px;
+  background: yellow;
+	border: 5px solid #b38f00;
 }
 
 #count, #start {
