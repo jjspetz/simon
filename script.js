@@ -53,6 +53,7 @@ window.onload = function() {
     colorArray = [];
     userArray = [];
     count = 0;
+    document.getElementById('msg').innerHTML = '';
     // run game
     count++;
     game();
@@ -86,17 +87,35 @@ window.onload = function() {
   }
 
   // check user input
-  function check() {
+  function check(life=true, repeat=false) {
     count++;
     pushCount = 0;
     userArray = [];
     let c = 0;
+
+    // checks if this is a second time because user made mistake 1st time
+    if (repeat) {
+      setTimeout(function() {effects(colorArray)}, 800);
+    }
 
     let loop = setInterval (function() {
       c++;
       console.log('listen ' + c);
       console.log(colorArray);
       console.log(userArray);
+      for (let k = 0; k < userArray.length; k++) {
+        if (userArray[k] != colorArray[k]) {
+          if (life) {
+            clearInterval(loop);
+            document.getElementById('msg').innerHTML = 'Try Again';
+            check(false, true);
+          } else {
+            clearInterval(loop);
+            return fail();
+          }
+        }
+      }
+
       if (userArray.length==colorArray.length && userArray.every((v,i)=> v === colorArray[i])) {
         console.log('returned true');
         clearInterval(loop);
@@ -107,13 +126,12 @@ window.onload = function() {
       }
     },1000)
 
-    if (!loop) {
-      return 'game over!';
-    }
+    // resets button colors back to origial color
+  }
 
-
-    // console.log('returned false');
-    // return false;
+  // fail funtion fo when user presses the wrong button
+  function fail() {
+    document.getElementById('msg').innerHTML = 'Game Over';
   }
 
   // main game function
@@ -128,7 +146,7 @@ window.onload = function() {
       colorArray.push(next);
     }
     // delayed so there is time between users last push and start of new loop
-    setTimeout(function() {effects(colorArray)}, 1000);
+    setTimeout(function() {effects(colorArray)}, 800);
 
     check();
 

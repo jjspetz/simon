@@ -54,9 +54,9 @@ body {
 	border: 5px solid #b38f00;
 }
 
-#count, #start {
+#count, #start, #msg {
   position: relative;
-  top: 40%;
+  top: 25%;
 }
 
 #count div {
@@ -68,9 +68,19 @@ body {
 }
 
 #start button {
+  margin-top: 1em;
   border: 3px solid darkorange;
   border-radius: 4px;
   box-shadow: 1px 1px 3px;
   background: yellow;
   font-size: 20pt;
+}
+#msg {
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 2px;
+  background: white;
+  width: 6em;
+  height: 1.5em;
+  font-size: 1em;
 }
