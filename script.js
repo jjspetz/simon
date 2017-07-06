@@ -29,18 +29,22 @@ window.onload = function() {
   // listening for click events
   // red
   red.addEventListener('click', function() {
+    audio[this.id + 'Audio'].play();
     userArray.push(red);
   });
   // blue
   blue.addEventListener('click', function() {
+    audio[this.id + 'Audio'].play();
     userArray.push(blue);
   });
   // green
   green.addEventListener('click', function() {
+    audio[this.id + 'Audio'].play();
     userArray.push(green);
   });
   // yellow
   yellow.addEventListener('click', function() {
+    audio[this.id + 'Audio'].play();
     userArray.push(yellow);
   });
   // start
@@ -50,6 +54,7 @@ window.onload = function() {
     userArray = [];
     count = 0;
     // run game
+    count++;
     game();
   });
 
@@ -82,30 +87,52 @@ window.onload = function() {
 
   // check user input
   function check() {
-    return false;
+    count++;
+    userArray = [];
+    let c = 0
+
+    var loop = setInterval (function() {
+      c++;
+      console.log('listen ' + c);
+      console.log(colorArray);
+      console.log(userArray);
+      if (userArray.length==colorArray.length && userArray.every((v,i)=> v === colorArray[i])) {
+        console.log('returned true');
+        clearInterval(loop);
+        return game();
+      }
+      if (userArray.length > colorArray.length) {
+        clearInterval(loop);
+      }
+    },1000)
+
+    if (!loop) {
+      return 'game over!';
+    }
+
+
+    // console.log('returned false');
+    // return false;
   }
 
   // main game function
   function game() {
     // new random button/color
     let next = randomColor();
-    // reset array to check against computer AI
-    userArray = [];
     // sets count display
     countDisplay.innerHTML = count;
 
     colorArray.push(next);
-    effects(colorArray);
+    setTimeout(function() {effects(colorArray)}, 1000);
 
-    if (check()) {
-      effects(colorArray);
-    }
-    else if (count < 5) {
-      count++;
-      game();
-    }
-    else {
-      console.log('game over');
-    }
+    check();
+
+    // else if (count < 5) {
+    //   count++;
+    //   game();
+    // }
+    // else {
+    //   console.log('game over');
+    // }
   }
 }
