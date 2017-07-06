@@ -134,6 +134,10 @@ window.onload = function() {
     document.getElementById('msg').innerHTML = 'Game Over';
   }
 
+  function win() {
+    document.getElementById('msg').innerHTML = 'Victory';
+  }
+
   // main game function
   function game(next=true) {
     // checks if the game should advance to next round
@@ -148,14 +152,10 @@ window.onload = function() {
     // delayed so there is time between users last push and start of new loop
     setTimeout(function() {effects(colorArray)}, 800);
 
-    check();
+    if (count > 20) {
+      win();
+    }
 
-    // else if (count < 5) {
-    //   count++;
-    //   game();
-    // }
-    // else {
-    //   console.log('game over');
-    // }
+    check();
   }
 }
