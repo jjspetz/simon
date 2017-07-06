@@ -4,7 +4,7 @@ window.onload = function() {
   // globals
   var colorArray = [];
   var userArray = [];
-  var colors;
+  var colors, count;
   var colorDict = {
     darkyellow: '#b38f00',
     lightred: '...'
@@ -88,10 +88,11 @@ window.onload = function() {
   // check user input
   function check() {
     count++;
+    pushCount = 0;
     userArray = [];
-    let c = 0
+    let c = 0;
 
-    var loop = setInterval (function() {
+    let loop = setInterval (function() {
       c++;
       console.log('listen ' + c);
       console.log(colorArray);
@@ -116,13 +117,17 @@ window.onload = function() {
   }
 
   // main game function
-  function game() {
-    // new random button/color
-    let next = randomColor();
-    // sets count display
-    countDisplay.innerHTML = count;
+  function game(next=true) {
+    // checks if the game should advance to next round
+    if (next) {
+      // new random button/color
+      let next = randomColor();
+      // sets count display
+      countDisplay.innerHTML = count;
 
-    colorArray.push(next);
+      colorArray.push(next);
+    }
+    // delayed so there is time between users last push and start of new loop
     setTimeout(function() {effects(colorArray)}, 1000);
 
     check();
