@@ -54,7 +54,7 @@ body {
 	border: 5px solid #b38f00;
 }
 
-#count, #start, #msg {
+#count, #start, #msg, #strict {
   position: relative;
   top: 25%;
 }

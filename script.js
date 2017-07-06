@@ -16,6 +16,7 @@ window.onload = function() {
   var green = document.getElementById('green');
   var yellow = document.getElementById('yellow');
   var start = document.getElementById('start');
+  var strict = document.getElementById('check')
   var countDisplay = document.getElementById('countDisplay');
 
   // set audio
@@ -91,7 +92,6 @@ window.onload = function() {
     count++;
     pushCount = 0;
     userArray = [];
-    let c = 0;
 
     // checks if this is a second time because user made mistake 1st time
     if (repeat) {
@@ -99,13 +99,13 @@ window.onload = function() {
     }
 
     let loop = setInterval (function() {
-      c++;
-      console.log('listen ' + c);
-      console.log(colorArray);
-      console.log(userArray);
+      if (count > 20) {
+        clearInterval(loop);
+        return win();
+      }
       for (let k = 0; k < userArray.length; k++) {
         if (userArray[k] != colorArray[k]) {
-          if (life) {
+          if (life && !strict.checked) {
             clearInterval(loop);
             document.getElementById('msg').innerHTML = 'Try Again';
             check(false, true);
@@ -117,14 +117,14 @@ window.onload = function() {
       }
 
       if (userArray.length==colorArray.length && userArray.every((v,i)=> v === colorArray[i])) {
-        console.log('returned true');
         clearInterval(loop);
         return game();
       }
       if (userArray.length > colorArray.length) {
         clearInterval(loop);
+        return fail();
       }
-    },1000)
+    },800)
 
     // resets button colors back to origial color
   }
@@ -150,11 +150,7 @@ window.onload = function() {
       colorArray.push(next);
     }
     // delayed so there is time between users last push and start of new loop
-    setTimeout(function() {effects(colorArray)}, 800);
-
-    if (count > 20) {
-      win();
-    }
+    setTimeout(function() {effects(colorArray)}, 800)
 
     check();
   }
